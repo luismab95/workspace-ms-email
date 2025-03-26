@@ -72,8 +72,6 @@ The compiled JavaScript files will be in the `dist` directory.
 |   │   │   ├── routes/
 |   │   │   ├── middlewares/
 |   │   │   └── validators/
-|   │   ├── persistence
-|   │   │   ├── postgres/
 │   ├── shared
 │   └── index.ts
 │   └── swagger.ts
@@ -95,8 +93,6 @@ The compiled JavaScript files will be in the `dist` directory.
     - `routes`: Route definitions.
     - `middlewares`: Custom middleware functions.
     - `validators`: Request validation logic.
-  - `persistence`: Data persistence.
-    - `postgres`: PostgreSQL specific implementations.
 - `src/shared`: Shared utilities and helpers.
 - `src/index.ts`: Application entry point.
 - `src/swagger.ts`: documentation with swagger.
