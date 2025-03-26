@@ -1,12 +1,12 @@
-import express, { NextFunction, Request, Response } from "express";
-import cors from "cors";
-import swaggerUi from "swagger-ui-express";
-import swaggerSpec from "./swagger";
-import { OK_200 } from "./shared/constants/messages";
-import emailRoutes from "./infrastructure/http/routes/email-routes";
-import colors from "colors";
 import { config } from "./shared/infrastructure/environment";
 import { errorHandler } from "./shared/helpers/response-helper";
+import { OK_200 } from "./shared/constants/messages";
+import colors from "colors";
+import cors from "cors";
+import emailRoutes from "./infrastructure/http/routes/email-routes";
+import express, { Request, Response } from "express";
+import swaggerSpec from "./swagger";
+import swaggerUi from "swagger-ui-express";
 
 const startServer = async () => {
   const { port, host, nodeEnv } = config.server;
@@ -39,7 +39,7 @@ const startServer = async () => {
   app.use(errorHandler);
 
   app.listen(port, host, () => {
-    console.info(colors.bold.green(`MS-SECURITY iniciado en ${host}:${port}`));
+    console.info(colors.bold.green(`MS-EMAIL iniciado en ${host}:${port}`));
   });
 };
 
