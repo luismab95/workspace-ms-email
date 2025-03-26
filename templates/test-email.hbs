@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a nuestra plataforma {{companyName}}</title>
+</head>
+
+<body>
+    <table style="width: 650px; font-family: Arial; font-size: 16px; line-height: 29px;" align="center" cellspacing="0"
+        cellpadding="0">
+        <thead>
+            <tr>
+                <td colspan="2">
+                    <img src="{{imageHeader}}" alt="LOGO"
+                        style="display: block; margin-inline: auto; width: 100%; max-width: 100%">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="border-bottom: solid 3px #233d90;">
+                    &nbsp;
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    <div style="padding: 1.5rem 0;">
+                        <p>
+                            Hola
+                        </p>
+                        <p>Este es un correo de prueba
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan='2'>
+                    <p>
+                        Saludos
+                        <b style='display: block; color: #233d90'>{{companyName}}</b>
+                    </p>
+                    <em style='margin-top: 2rem; color: #484848; font-size: .8rem; display: inline-block'>
+                        Favor no responder este mail, cualquier inquietud dirigirla a:
+                        <a href="mailto:{{mailFooter}}" style='color: #009fd7;'>
+                            {{mailFooter}}
+                        </a>
+                    </em>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>
