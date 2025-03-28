@@ -41,25 +41,6 @@ const router = express.Router();
  *               context:
  *                 type: object
  *                 description: Variables de la plantilla
- *               mailerHost:
- *                 type: string
- *                 description: Host del servidor de correo
- *               mailerPort:
- *                 type: number
- *                 description: Puerto del servidor de correo
- *               mailerUser:
- *                 type: string
- *                 description: Usuario del servidor de correo
- *               mailerPassword:
- *                 type: string
- *                 description: Contraseña del servidor de correo (encryptado)
- *               mailerSecure:
- *                 type: boolean
- *                 description: Habilitar protocolo seguro
- *               mailerFrom:
- *                 type: string
- *                 format: email
- *                 description: Email origen que envia los correos
  *     responses:
  *       200:
  *         description: Mensaje correo enviado

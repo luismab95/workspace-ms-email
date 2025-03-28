@@ -1,6 +1,7 @@
 import colors from "colors";
 import { NextFunction, Request, Response } from "express";
 import { OK_200 } from "../constants/messages";
+import { ServiceResponseI } from "../interfaces/response.interface";
 
 export class ErrorResponse extends Error {
   statusCode: number;
@@ -12,13 +13,14 @@ export class ErrorResponse extends Error {
   }
 }
 
-export const responseHelper = (req: Request, res: Response, data: unknown) => {
-  res.json({ message: OK_200, data });
+export const responseHelper = (_req: Request, res: Response, data: unknown) => {
+  const response: ServiceResponseI = { data, message: OK_200 };
+  res.json(response);
 };
 
 export const errorHandler = (
   error: any,
-  req: Request,
+  _req: Request,
   res: Response,
   _next: NextFunction
 ) => {
@@ -27,8 +29,6 @@ export const errorHandler = (
   const statusCode = error.statusCode || 500;
   const message = error.message || "Internal Server Error";
 
-  res.status(statusCode).json({
-    data: null,
-    message: message,
-  });
+  const response: ServiceResponseI = { data: null, message };
+  res.status(statusCode).json(response);
 };

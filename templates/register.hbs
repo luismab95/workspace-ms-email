@@ -12,12 +12,6 @@
         cellpadding="0">
         <thead>
             <tr>
-                <td colspan="2">
-                    <img src="{{imageHeader}}" alt="LOGO"
-                        style="display: block; margin-inline: auto; width: 100%; max-width: 100%">
-                </td>
-            </tr>
-            <tr>
                 <td colspan="2" style="border-bottom: solid 3px #233d90;">
                     &nbsp;
                 </td>
@@ -37,20 +31,10 @@
                             <li><strong>Usuario:</strong>
                                 {{username}}
                             </li>
-                            {{#if (eq userType 'LOCAL')}}
-                            <li><strong>Contraseña temporal:</strong>
-                                {{password}}
+                            <li><strong>Se autentifica con:</strong>
+                                {{type}}
                             </li>
-                            {{/if}}
                         </ul>
-                        {{#if (eq userType 'LOCAL')}}
-                        <p>Te recomendamos cambiar tu contraseña temporal por una más segura después de iniciar sesión
-                            por primera vez.</p>
-                        {{/if}}
-                        <p>Revisa nuestros <strong><a href="{{terms}}">Términos y condiciones.</a></strong> </p>
-                        <p>
-                            <a href="{{web}}">Iniciar sesión</a>
-                        </p>
                         <p>¡Gracias por unirte a nosotros!</p>
                     </div>
                 </td>

@@ -1,15 +1,24 @@
 import nodemailer from "nodemailer";
 import handlebars from "handlebars";
 import fs from "fs";
-import { CryptoHelper } from "../../shared/helpers/crypto-helper";
 import { config } from "src/shared/infrastructure/environment";
-import { EmailInterface } from "src/domain/entities/email";
+import { EmailI } from "src/domain/entities/email";
+import { ErrorResponse } from "src/shared/helpers/response-helper";
+import { CodeHttpEnum } from "src/shared/enums/http-code";
 
 handlebars.registerHelper("eq", function (this: any, arg1: any, arg2: any) {
   return arg1 === arg2;
 });
 
-const { nodeEnv } = config.server;
+const {
+  nodeEnv,
+  mailFrom,
+  mailName,
+  mailPort,
+  mailUser,
+  mailHost,
+  mailPassword,
+} = config.server;
 
 const readHTMLFile = (path: string) => {
   return new Promise<string>((resolve, reject) => {
@@ -23,15 +32,15 @@ const readHTMLFile = (path: string) => {
   });
 };
 
-const sendEmail = async (email: EmailInterface) => {
-  const cryptoHelper = new CryptoHelper();
+const sendEmail = async (email: EmailI) => {
   const transporter = nodemailer.createTransport({
-    service: email.mailerHost,
-    port: email.mailerPort,
-    secure: email.mailerSecure,
+    service: mailHost,
+    secure: nodeEnv !== "dev",
+    requireTLS: nodeEnv !== "dev",
+    port: mailPort,
     auth: {
-      user: email.mailerUser,
-      pass: cryptoHelper.decryptedData(email.mailerPassword),
+      user: mailUser,
+      pass: mailPassword,
     },
   });
   try {
@@ -43,13 +52,13 @@ const sendEmail = async (email: EmailInterface) => {
     const htmlToSend = template(email.context);
 
     await transporter.sendMail({
-      from: email.mailerFrom,
+      from: `"${mailName}" <${mailFrom}>`,
       to: email.to,
       subject: email.subject,
       html: htmlToSend,
     });
-  } catch (error: any) {
-    throw new Error(error.message);
+  } catch (error) {
+    throw new ErrorResponse(error.message, CodeHttpEnum.badGateway);
   } finally {
     if (transporter) {
       transporter.close();
