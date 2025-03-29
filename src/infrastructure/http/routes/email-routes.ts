@@ -48,6 +48,8 @@ const router = express.Router();
  *         description: Mensaje de error
  *       401:
  *         description: Mensaje de error acceso no autorizado
+ *       422:
+ *         description: Mensaje de error de validación
  *     securitySchemes:
  *       BasicAuth:
  *         type: http
